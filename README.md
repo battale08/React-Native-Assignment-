@@ -1,79 +1,47 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# 🏏 Cricket Match Feed App
 
-# Getting Started
+A React Native app that simulates a live cricket commentary feed.  
+The app generates events like BALL, BOUNDARY, WICKET, and MATCH STATUS and updates the UI in real-time with a sports-style scoreboard and live commentary feed.  
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+---
 
-## Step 1: Start the Metro Server
+## ✨ Features
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+- Live Feed Simulation – Events (Ball, Boundary, Wicket, Match Status) appear in sequence.  
+- Scoreboard Header – Stylish scoreboard showing Score, Overs, and Innings.  
+- Event Highlights –  
+  - Boundary: Green highlight with emphasis.  
+  - Wicket: Red bold alert.  
+  - Ball: Normal commentary.  
+- 📢 Match Status Context Change –  
+  - Displays a banner when innings end (`"Team A finishes on 175/7"`)  
+  - Resets scoreboard for the next innings.  
+  - Updates match context (e.g., Innings Break, Match Over).  
+- 🔄 Auto Event Sequencing – Events occur in order:  
+  `BALL → BOUNDARY → WICKET → MATCH_STATUS → repeat`.  
+- 📱 Sports Vibe UI – Dark green scoreboard, highlighted runs/wickets, and banner alerts.  
 
-To start Metro, run the following command from the _root_ of your React Native project:
+---
 
-```bash
-# using npm
-npm start
+## 📂 Project Structure
 
-# OR using Yarn
-yarn start
-```
+├── App.tsx # Root component
+├── components
+│ └── MatchFeed.tsx # UI for scoreboard + commentary feed
+└── src
+└── hooks
+└── useMatchFeed.ts # Custom hook managing match state + events
 
-## Step 2: Start your Application
+## How to run
+1. `yarn install` or `npm install`
+2. After successful setting up react native and cloning this repository you can run `npm install` and then go to ios folder using command using `cd ios` and run `pod install` and then `npx react-native run-ios` for IOS and `npx react-native run-Android` for Android to start the application on a simulator / emulator.
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+## Future Improvements
 
-### For Android
+--Add team names & logos.
+--Integrate with a real cricket API for live scores.
+--Add animations (boundary fireworks, wicket shake).
+--Show match summary card when the game ends.
 
-```bash
-# using npm
-npm run android
-
-# OR using Yarn
-yarn android
-```
-
-### For iOS
-
-```bash
-# using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
-```
-
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
-
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
-
-## Step 3: Modifying your App
-
-Now that you have successfully run the app, let's modify it.
-
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
-
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+# Simulating the Real-Time Stream 
+ Since no actual API or WebSocket is provided, i have mock the data stream using JavaScript's setInterval to periodically push event objects into the component's state. This mimics real-time updates every few seconds (e.g., 2-5 seconds). In a real scenario, replacing this with a WebSocket connection (e.g., via Socket.io) or an API polling mechanism.
