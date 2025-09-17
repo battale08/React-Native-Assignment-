@@ -3,7 +3,6 @@
 A React Native app that simulates a live cricket commentary feed.  
 The app generates events like BALL, BOUNDARY, WICKET, and MATCH STATUS and updates the UI in real-time with a sports-style scoreboard and live commentary feed.  
 
----
 
 ## ✨ Features
 
@@ -19,7 +18,7 @@ The app generates events like BALL, BOUNDARY, WICKET, and MATCH STATUS and updat
   - Updates match context (e.g., Innings Break, Match Over).  
 - 🔄 Auto Event Sequencing – Events occur in order:  
   `BALL → BOUNDARY → WICKET → MATCH_STATUS → repeat`.  
-- 📱 Sports Vibe UI – Dark green scoreboard, highlighted runs/wickets, and banner alerts.  
+-  Sports Vibe UI – Dark green scoreboard, highlighted runs/wickets, and banner alerts.  
 
 ---
 
