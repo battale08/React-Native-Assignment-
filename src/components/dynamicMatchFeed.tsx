@@ -40,6 +40,15 @@ const MatchFeed = () => {
     </View>
     </View>
 
+    <View style={styles.batsmenBox}>
+  <Text style={styles.batsmanText}>
+    🏏 Striker: {state.striker?.name ?? "-"} ({state.striker?.runs ?? 0})
+  </Text>
+  <Text style={styles.batsmanText}>
+    ⚡ Non-Striker: {state.nonStriker?.name ?? "-"} ({state.nonStriker?.runs ?? 0})
+  </Text>
+</View>
+
       {/* Commentary Feed */}
       <FlatList
         data={state.feed}
@@ -162,6 +171,18 @@ const styles = StyleSheet.create({
     fontWeight: "600", 
     color: "#ff9800" 
   }, 
+  batsmenBox: {
+    marginTop: 10,
+    padding: 10,
+    gap: 10,
+    borderRadius: 8,
+    backgroundColor: "#e8f5e9",
+  },
+  batsmanText: {
+    fontSize: 14,
+    fontWeight: "600",
+    color: "#1b5e20",
+  },
 });
 
 export default MatchFeed;

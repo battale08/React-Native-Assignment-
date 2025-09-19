@@ -1,9 +1,13 @@
 import { useEffect, useReducer } from "react";
 
-type EventType = "BALL" | "BOUNDARY" | "WICKET" | "MATCH_STATUS" | "UNKNOWN";
+type EventType = "BALL" | "BOUNDARY" | "WICKET" | "MATCH_STATUS" | "BATSMAN_UPDATE" | "UNKNOWN";
 interface Event { 
   type: EventType; 
   payload: any; 
+}
+interface Batsman {
+  name: string;
+  runs: number;
 }
 interface State { 
   score: number; 
@@ -13,6 +17,8 @@ interface State {
   feed: Event[]; 
   matchStatus?: string;
   innings: number;
+  striker?: Batsman;
+  nonStriker?: Batsman;
 }
 
 const initialState: State = { 
@@ -81,6 +87,15 @@ function matchReducer(state: State, action: Event): State {
         feed: [action, ...state.feed],
       };
     }
+    case "BATSMAN_UPDATE": {
+      
+      return {
+        ...state,
+        striker: action.payload.striker,
+        nonStriker: action.payload.nonStriker,
+        feed: [action, ...state.feed],
+      }
+    }
     
     default:
       return {
@@ -99,6 +114,7 @@ function getRandomEvent(): Event {
     { type: "BOUNDARY", payload: { runs: 4, commentary: "Classic cover drive, races to the boundary!" } },
     { type: "WICKET", payload: { playerOut: "R. Sharma", dismissal: "LBW", commentary: "Big appeal... and OUT!😔" } },
     { type: "MATCH_STATUS", payload: { status: "Innings Break", summary: "Team A finishes on 175/7." } },
+    { type: "BATSMAN_UPDATE", payload: { striker: { name: "Kohli", runs: 45 },  nonStriker: { name: "Hardik", runs: 32 } } },
     // { type: "UNKNOWN", payload: { commentary: "An unexpected event occurred." } }, // For testing unknown events
   ];
 
